@@ -74,6 +74,24 @@ body {
     transition: all 0.2s;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    position: relative;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--brick);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    transform: scaleX(1);
 }
 
 .nav a:hover,
@@ -161,6 +179,12 @@ body {
     gap: 16px;
 }
 
+@keyframes pulse-brick {
+    0%   { box-shadow: 0 0 0 0 rgba(200, 68, 26, 0.7); }
+    70%  { box-shadow: 0 0 0 15px rgba(200, 68, 26, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(200, 68, 26, 0); }
+}
+
 .btn-primary {
     background-color: var(--brick);
     color: #fff;
@@ -171,6 +195,7 @@ body {
     cursor: pointer;
     letter-spacing: 0.5px;
     transition: background-color 0.2s;
+    animation: pulse-brick 2s infinite;
 }
 
 .btn-primary:hover {
@@ -432,6 +457,7 @@ body {
 .benefit-item {
     flex: 1;
     padding: 20px;
+    perspective: 1000px;
 }
 
 .benefit-item img {
@@ -439,10 +465,11 @@ body {
     display: block;
     margin: 0 auto 20px auto;
     filter: brightness(0) invert(1) opacity(0.6);
-    transition: filter 0.3s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s;
 }
 
 .benefit-item:hover img {
+    transform: rotateY(360deg) scale(1.15);
     filter: brightness(0) saturate(100%) invert(38%) sepia(80%) saturate(700%) hue-rotate(348deg) brightness(95%);
 }
 
