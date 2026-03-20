@@ -71,6 +71,24 @@ body {
     font-size: 15px;
     font-weight: 600;
     transition: color 0.3s;
+    position: relative;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    transform: scaleX(1);
 }
 
 .nav a:hover,
@@ -142,6 +160,12 @@ body {
     margin-bottom: 50px;
 }
 
+@keyframes pulse-accent {
+    0%   { box-shadow: 0 0 0 0 rgba(42, 157, 143, 0.7); }
+    70%  { box-shadow: 0 0 0 15px rgba(42, 157, 143, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(42, 157, 143, 0); }
+}
+
 .btn-main {
     background-color: var(--accent);
     color: #fff;
@@ -152,6 +176,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
+    animation: pulse-accent 2s infinite;
 }
 
 .btn-main:hover {
@@ -487,6 +512,7 @@ body {
     padding: 36px 28px;
     border: 1px solid #2d3f55;
     transition: border-color 0.3s;
+    perspective: 1000px;
 }
 
 .benefit-item:hover {
@@ -496,6 +522,12 @@ body {
 .benefit-icon {
     font-size: 36px;
     margin-bottom: 16px;
+    display: inline-block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.benefit-item:hover .benefit-icon {
+    transform: rotateY(360deg) scale(1.2);
 }
 
 .benefit-item h4 {
